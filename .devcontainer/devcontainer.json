@@ -1,0 +1,33 @@
+{
+  "name": "Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+
+  // Features: Docker-in-Docker, Docker Compose V2 plugin, GitHub CLI
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "dockerDashComposeVersion": "v2",
+      "installDockerBuildx": true
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  // Run the post-create script once the container is ready
+  "postCreateCommand": "bash .devcontainer/scripts/post-create.sh",
+
+  // VS Code extensions useful for this stack
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "GitHub.vscode-github-actions",
+        "GitHub.copilot"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+
+  // Non-root user (matches the default devcontainer user)
+  "remoteUser": "vscode"
+}
